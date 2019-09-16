@@ -30,6 +30,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('angular-rick-and-morty-api-client app is running!');
+    expect(compiled.querySelector('h1').textContent).toContain('Rick and Morty API client');
   });
 });
