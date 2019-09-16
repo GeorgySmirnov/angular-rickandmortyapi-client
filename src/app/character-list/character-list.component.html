@@ -1,6 +1,12 @@
 <h2>Characters:</h2>
-<div>
-    <div *ngFor='let character of characters'>
-        {{character.name}}
+<div class='character-list'>
+    <div *ngFor='let character of characters' class='character-list-item'>
+        <div class='character-image'>
+            <img src='{{character.image}}' />
+        </div>
+        <div class='character-name'>{{character.name}}</div>
+        <div class='character-status'>{{character.status}}</div>
+        <div class='character-species'>{{character.species}}</div>
+        <div class='character-type'>{{character.type}}</div>
     </div>
 </div>
