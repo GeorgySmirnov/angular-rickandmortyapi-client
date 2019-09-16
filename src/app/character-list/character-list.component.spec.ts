@@ -18,11 +18,25 @@ describe('CharacterListComponent', () => {
     const fixture: ComponentFixture<CharacterListComponent> = TestBed.createComponent(CharacterListComponent);
     const component: CharacterListComponent = fixture.componentInstance;
     fixture.detectChanges();
-    return { component };
+    return { component, fixture };
   };
 
   it('should create', () => {
     const { component } = setup();
     expect(component).toBeTruthy();
+  });
+
+  it('should get character list on initialization', () => {
+    const { component } = setup();
+    expect(component.characters).toEqual(mockCharacterList);
+  });
+
+  it('should render character list', () => {
+    const { fixture } = setup();
+    const listElement: HTMLElement = fixture.nativeElement;
+    const names: NodeListOf<Element> = listElement.querySelectorAll('.character-name');
+    expect(names.length).toEqual(mockCharacterList.length);
+    mockCharacterList.forEach((character, index) =>
+      expect(names.item(index).textContent).toEqual(character.name));
   });
 });
