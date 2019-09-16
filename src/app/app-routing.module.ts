@@ -4,7 +4,8 @@ import { CharacterListComponent } from './character-list/character-list.componen
 
 
 const routes: Routes = [
-  {path: '', component: CharacterListComponent},
+  { path: '', redirectTo: '/characters', pathMatch: 'full' },
+  { path: 'characters', component: CharacterListComponent },
 ];
 
 @NgModule({
