@@ -38,4 +38,13 @@ describe('CharacterService', () => {
     });
     http.expectOne(characterURL).flush(mockGetResult);
   });
+
+  it('can fetch single character', (done) => {
+    const { service, http } = setup();
+    service.getCharacter(0).subscribe(result => {
+      expect(result).toEqual(mockCharacterList[0]);
+      done();
+    });
+    http.expectOne(characterURL + '0').flush(mockCharacterList[0]);
+  });
 });

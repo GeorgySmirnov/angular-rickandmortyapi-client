@@ -19,4 +19,8 @@ export class CharacterService {
       map(result => result.results)
     );
   }
+
+  public getCharacter(id: number): Observable<Character> {
+    return this.http.get<Character>(`${this.characterURL}${id}`);
+  }
 }
