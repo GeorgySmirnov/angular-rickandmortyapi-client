@@ -5,3 +5,16 @@
 <div class='character-status'>{{character.status}}</div>
 <div class='character-species'>{{character.species}}</div>
 <div class='character-type'>{{character.type}}</div>
+
+<div class='episode-list'>
+    <div class='episode header'>
+        <div class='episode-code'>episode</div>
+        <div class='episode-title'>title</div>
+        <div class='episode-air-date'>aired</div>
+    </div>
+    <div *ngFor='let episode of episodes' class='episode'>
+        <div class='episode-code'>{{episode.episode}}</div>
+        <div class='episode-title'>{{episode.name}}</div>
+        <div class='episode-air-date'>{{episode.air_date}}</div>
+    </div>
+</div>

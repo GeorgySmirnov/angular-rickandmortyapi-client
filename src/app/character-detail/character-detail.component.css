@@ -1,0 +1,31 @@
+
+.episode {
+    display: flex;
+    flex-flow: row nowrap;
+    padding: 0px;
+    margin: 0px 10px;
+    width: 692px
+}
+
+.episode>* {
+    padding: 5px 10px;
+}
+
+.header {
+    border-bottom: 1px solid white;
+}
+
+.episode-code {
+    width: 60px;
+}
+
+.episode-title {
+    width: 400px;
+    word-wrap: normal;
+    border-left: 1px solid white;
+}
+
+.episode-air-date {
+    width: 170px;
+    border-left: 1px solid white;
+}
