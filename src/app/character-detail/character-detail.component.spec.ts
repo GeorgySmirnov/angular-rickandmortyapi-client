@@ -7,15 +7,15 @@ import { of } from 'rxjs';
 import { mockCharacterList } from '../mocks/character-endpoint';
 
 describe('CharacterDetailComponent', () => {
-  const routeMock: DeepPartial<ActivatedRoute> = {
-    snapshot: {
-      paramMap: { get: () => '3'},
-    }
-  };
   const CharacterServiceMock: Partial<CharacterService> = {
-    getCharacters: () => of(mockCharacterList)};
+    getCharacter: (id: number) => of(mockCharacterList[id])};
 
-  const setup = () => {
+  const setup = (routeId: number = 0) => {
+    const routeMock: DeepPartial<ActivatedRoute> = {
+      snapshot: {
+        paramMap: { get: () => `${routeId}`},
+      }
+    };
     TestBed.configureTestingModule({
       declarations: [ CharacterDetailComponent ],
       providers: [
@@ -33,5 +33,21 @@ describe('CharacterDetailComponent', () => {
   it('should create', () => {
     const { component } = setup();
     expect(component).toBeTruthy();
+  });
+
+  it('should get character in route on initialization', () => {
+    const { component } = setup(0);
+    expect(component.character).toEqual(mockCharacterList[0]);
+  });
+
+  describe('Renders details for different characters', () => {
+    mockCharacterList.forEach((character, index) => {
+      it(`Renders ${character.name}`, () => {
+        const { fixture } = setup(index);
+        const listElement: HTMLElement = fixture.nativeElement;
+        const name: Element = listElement.querySelector('.character-name');
+        expect(name.textContent).toEqual(character.name);
+      });
+    });
   });
 });
