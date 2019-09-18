@@ -18,3 +18,17 @@ export interface LocationRecord {
     name: string;
     url: string;
 }
+
+export const CharacterFilterValues = {
+    name: '',
+    status: ['alive', 'dead', 'unknown'],
+    species: '',
+    type: '',
+    gender: ['female', 'male', 'genderless', 'unknown'],
+} as const;
+
+type ValuesToType<T> = {
+    -readonly [K in keyof T]?: T[K] extends readonly string[] ? T[K][number] : string;
+};
+
+export type CharacterFilter = ValuesToType<typeof CharacterFilterValues>;

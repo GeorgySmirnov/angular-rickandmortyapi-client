@@ -3,6 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { CharacterService } from './character.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import { mockCharacterList } from './mocks/character-endpoint';
+import { CharacterFilter } from './types/character';
 
 describe('CharacterService', () => {
   const mockGetResult = {
@@ -46,5 +47,19 @@ describe('CharacterService', () => {
       done();
     });
     http.expectOne(characterURL + '0').flush(mockCharacterList[0]);
+  });
+
+  xit('can filter characters', () => {
+    const { service, http } = setup();
+    const filter: CharacterFilter = {
+      name: 'filter name',
+      gender: 'female',
+      species: 'filter species',
+      status: 'alive',
+      type: 'filter type',
+    };
+    const filterParams = 'name=filter%20name&gender=female&species=filter%20species&status=alive&type=filter%20type';
+    service.getCharacters(filter);
+    http.expectOne(characterURL + '?' + filterParams);
   });
 });

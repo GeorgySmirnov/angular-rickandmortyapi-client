@@ -1,6 +1,9 @@
 <h2>Characters:</h2>
+<label>Filter:
+    <input #filterInput (keydown.enter)="setFilter(filterInput.value)"/>
+</label>
 <div class='character-list'>
-    <div *ngFor='let character of characters' class='character-list-item'>
+    <a *ngFor='let character of characters' class='character-list-item' routerLink="/character/{{character.id}}">
         <div class='character-image'>
             <img src='{{character.image}}' />
         </div>
@@ -8,5 +11,5 @@
         <div class='character-status'>{{character.status}}</div>
         <div class='character-species'>{{character.species}}</div>
         <div class='character-type'>{{character.type}}</div>
-    </div>
+    </a>
 </div>
