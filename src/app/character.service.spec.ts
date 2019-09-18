@@ -31,13 +31,22 @@ describe('CharacterService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return character list', (done) => {
+  it('should return character list and number of pages', (done) => {
     const { service, http } = setup();
     service.getCharacters().subscribe(result => {
-      expect(result).toEqual(mockCharacterList);
+      expect(result).toEqual({
+        characters: mockCharacterList,
+        pages: 20,
+      });
       done();
     });
     http.expectOne(characterURL).flush(mockGetResult);
+  });
+
+  xit('should request desired page from api', () => {
+    const { service, http } = setup();
+    service.getCharacters(5);
+    http.expectOne(characterURL + '?page=5');
   });
 
   it('can fetch single character', (done) => {
@@ -59,7 +68,7 @@ describe('CharacterService', () => {
       type: 'filter type',
     };
     const filterParams = 'name=filter%20name&gender=female&species=filter%20species&status=alive&type=filter%20type';
-    service.getCharacters(filter);
+    service.getCharacters(undefined, filter);
     http.expectOne(characterURL + '?' + filterParams);
   });
 });

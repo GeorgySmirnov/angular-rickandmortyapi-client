@@ -9,7 +9,9 @@ import { Character, CharacterFilter, CharacterFilterValues } from '../types/char
 })
 export class CharacterListComponent implements OnInit {
   public characters: Character[];
+  public pages: number;
   private filter?: CharacterFilter;
+  public page?: number;
 
   constructor(
     private characterService: CharacterService,
@@ -20,8 +22,19 @@ export class CharacterListComponent implements OnInit {
   }
 
   getCharacters() {
-    this.characterService.getCharacters(this.filter).subscribe(
-      characters => this.characters = characters);
+    if (this.page === undefined) {
+      this.page = 1;
+    }
+    this.characterService.getCharacters(this.page, this.filter).subscribe(
+      ({ characters, pages }) => {
+        this.characters = characters;
+        this.pages = pages;
+      });
+  }
+
+  setPage(page: number) {
+    this.page = Math.max(1, Math.min(this.pages, page));
+    this.getCharacters();
   }
 
   setFilter(filterString: string) {
@@ -30,6 +43,7 @@ export class CharacterListComponent implements OnInit {
     } else {
       this.filter = undefined;
     }
+    this.page = 1;
     this.getCharacters();
   }
 

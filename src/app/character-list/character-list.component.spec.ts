@@ -9,7 +9,10 @@ import { CharacterDetailComponent } from '../character-detail/character-detail.c
 
 describe('CharacterListComponent', () => {
   const CharacterServiceMock: Partial<CharacterService> = {
-    getCharacters: () => of(mockCharacterList)};
+    getCharacters: () => of({
+      characters: mockCharacterList,
+      pages: 20,
+    })};
 
   const setup = () => {
     TestBed.configureTestingModule({

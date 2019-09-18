@@ -2,6 +2,11 @@
 <label>Filter:
     <input #filterInput (keydown.enter)="setFilter(filterInput.value)"/>
 </label>
+<div class='page-controls'>
+    <div *ngIf='page > 1' (click)='setPage(page - 1)'>back</div>
+    <span>{{page}}/{{pages}}</span>
+    <div *ngIf='page < pages' (click)='setPage(page + 1)'>forward</div>
+</div>
 <div class='character-list'>
     <a *ngFor='let character of characters' class='character-list-item' routerLink="/character/{{character.id}}">
         <div class='character-image'>
