@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { CharacterListComponent } from './character-list/character-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CharacterDetailComponent } from './character-detail/character-detail.component';
+import { FavoriteCharactersComponent } from './favorite-characters/favorite-characters.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharacterListComponent,
-    CharacterDetailComponent
+    CharacterDetailComponent,
+    FavoriteCharactersComponent
   ],
   imports: [
     BrowserModule,

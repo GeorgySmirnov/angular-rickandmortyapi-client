@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Character, CharacterFilter } from './types/character';
@@ -34,5 +34,12 @@ export class CharacterService {
 
   public getCharacter(id: number): Observable<Character> {
     return this.http.get<Character>(`${this.characterURL}${id}`);
+  }
+
+  public getCharactersByIds(ids: number[]): Observable<Character[]> {
+    if (ids.length === 0) {
+      return of([]);
+    }
+    return this.http.get<Character[]>(this.characterURL + ids.join(','));
   }
 }

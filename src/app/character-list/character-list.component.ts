@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CharacterService } from '../character.service';
 import { Character, CharacterFilter, CharacterFilterValues } from '../types/character';
+import { FavoriteCharactersService } from '../favorite-characters.service';
 
 @Component({
   selector: 'app-character-list',
@@ -12,13 +13,25 @@ export class CharacterListComponent implements OnInit {
   public pages: number;
   private filter?: CharacterFilter;
   public page?: number;
+  public favorites: number[];
 
   constructor(
     private characterService: CharacterService,
+    private favoritesService: FavoriteCharactersService
   ) { }
 
   ngOnInit() {
     this.getCharacters();
+    this.getFavorites();
+  }
+
+  getFavorites() {
+    this.favorites = this.favoritesService.getList();
+  }
+
+  toggleFavorite(id: number) {
+    this.favoritesService.toggleCharacter(id);
+    this.getFavorites();
   }
 
   getCharacters() {
