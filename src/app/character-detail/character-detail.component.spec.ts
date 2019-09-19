@@ -59,7 +59,7 @@ describe('CharacterDetailComponent', () => {
       it(`renders ${character.name}`, () => {
         const { fixture } = setup(index);
         const componentElement: HTMLElement = fixture.nativeElement;
-        const name: Element = componentElement.querySelector('.character-name');
+        const name: Element = componentElement.querySelector('h2');
         expect(name.textContent).toEqual(character.name);
       });
     });
