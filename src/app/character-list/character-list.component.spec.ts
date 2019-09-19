@@ -6,6 +6,8 @@ import { of } from 'rxjs';
 import { mockCharacterList } from '../mocks/character-endpoint';
 import { AppRoutingModule } from '../app-routing.module';
 import { CharacterDetailComponent } from '../character-detail/character-detail.component';
+import { FavoriteCharactersService } from '../favorite-characters.service';
+import { FavoriteCharactersComponent } from '../favorite-characters/favorite-characters.component';
 
 describe('CharacterListComponent', () => {
   const CharacterServiceMock: Partial<CharacterService> = {
@@ -13,12 +15,18 @@ describe('CharacterListComponent', () => {
       characters: mockCharacterList,
       pages: 20,
     })};
+  const FavoriteCharactersServiceMock: Partial<FavoriteCharactersService> = {
+    getList: () => [1, 2, 3],
+  };
 
   const setup = () => {
     TestBed.configureTestingModule({
-      declarations: [ CharacterListComponent, CharacterDetailComponent ],
+      declarations: [ CharacterListComponent, CharacterDetailComponent, FavoriteCharactersComponent ],
       imports: [ AppRoutingModule ],
-      providers:    [ {provide: CharacterService, useValue: CharacterServiceMock } ]
+      providers:    [
+        {provide: CharacterService, useValue: CharacterServiceMock },
+        {provide: FavoriteCharactersService, useValue: FavoriteCharactersServiceMock },
+      ]
     })
     .compileComponents();
     const fixture: ComponentFixture<CharacterListComponent> = TestBed.createComponent(CharacterListComponent);
