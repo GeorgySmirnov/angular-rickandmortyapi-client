@@ -18,5 +18,8 @@
 }
 
 .favorite {
+    margin: 5px;
+    padding: 5px;
+    background-color: rgb(30,30,30);
     cursor: pointer;
 }

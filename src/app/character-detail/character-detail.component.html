@@ -1,22 +1,24 @@
-<h2>{{character.name}}</h2>
-<div class='character-info'>
-    <div class='character-image'>
-        <img src='{{character.image}}' />
+<div *ngIf='character'>
+    <h2>{{character.name}}</h2>
+    <div class='character-info'>
+        <div class='character-image'>
+            <img src='{{character.image}}' />
+        </div>
+        <div class='character-status'>Status: {{character.status}}</div>
+        <div class='character-species'>Species: {{character.species}}</div>
+        <div class='character-type'>Type: {{character.type}}</div>
+        <div class='character-gender'>Gender: {{character.gender}}</div>
     </div>
-    <div class='character-status'>Status: {{character.status}}</div>
-    <div class='character-species'>Species: {{character.species}}</div>
-    <div class='character-type'>Type: {{character.type}}</div>
-    <div class='character-gender'>Gender: {{character.gender}}</div>
-</div>
-<div class='episode-list'>
-    <div class='episode header'>
-        <div class='episode-code'>episode</div>
-        <div class='episode-title'>title</div>
-        <div class='episode-air-date'>aired</div>
-    </div>
-    <div *ngFor='let episode of episodes' class='episode'>
-        <div class='episode-code'>{{episode.episode}}</div>
-        <div class='episode-title'>{{episode.name}}</div>
-        <div class='episode-air-date'>{{episode.air_date}}</div>
+    <div class='episode-list'>
+        <div class='episode header'>
+            <div class='episode-code'>episode</div>
+            <div class='episode-title'>title</div>
+            <div class='episode-air-date'>aired</div>
+        </div>
+        <div *ngFor='let episode of episodes' class='episode'>
+            <div class='episode-code'>{{episode.episode}}</div>
+            <div class='episode-title'>{{episode.name}}</div>
+            <div class='episode-air-date'>{{episode.air_date}}</div>
+        </div>
     </div>
 </div>
