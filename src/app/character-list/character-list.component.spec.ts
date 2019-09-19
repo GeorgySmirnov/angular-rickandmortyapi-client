@@ -8,8 +8,18 @@ import { AppRoutingModule } from '../app-routing.module';
 import { CharacterDetailComponent } from '../character-detail/character-detail.component';
 import { FavoriteCharactersService } from '../favorite-characters.service';
 import { FavoriteCharactersComponent } from '../favorite-characters/favorite-characters.component';
+import { Directive, Component, Input, Output, EventEmitter, DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+
+@Component({selector: 'app-character-list-display', template: ''})
+class ListDisplayMockComponent {
+  @Input() characters;
+  @Input() favorites;
+  @Output() favoriteToggle = new EventEmitter<number>();
+}
 
 describe('CharacterListComponent', () => {
+
   const CharacterServiceMock: Partial<CharacterService> = {
     getCharacters: () => of({
       characters: mockCharacterList,
@@ -21,8 +31,10 @@ describe('CharacterListComponent', () => {
 
   const setup = () => {
     TestBed.configureTestingModule({
-      declarations: [ CharacterListComponent, CharacterDetailComponent, FavoriteCharactersComponent ],
-      imports: [ AppRoutingModule ],
+      declarations: [
+        CharacterListComponent,
+        ListDisplayMockComponent,
+      ],
       providers:    [
         {provide: CharacterService, useValue: CharacterServiceMock },
         {provide: FavoriteCharactersService, useValue: FavoriteCharactersServiceMock },
@@ -45,13 +57,12 @@ describe('CharacterListComponent', () => {
     expect(component.characters).toEqual(mockCharacterList);
   });
 
-  it('should render character list', () => {
+  it('should pass parameters to character list display', () => {
     const { fixture } = setup();
-    const listElement: HTMLElement = fixture.nativeElement;
-    const names: NodeListOf<Element> = listElement.querySelectorAll('.character-name');
-    expect(names.length).toEqual(mockCharacterList.length);
-    mockCharacterList.forEach((character, index) =>
-      expect(names.item(index).textContent).toEqual(character.name));
+    const listElements: DebugElement[] = fixture.debugElement.queryAll(By.css('app-character-list-display'));
+    expect(listElements.length).toEqual(1);
+    expect(listElements[0].componentInstance.characters).toEqual(mockCharacterList);
+    expect(listElements[0].componentInstance.favorites).toEqual([1, 2, 3]);
   });
 
   it('can parse filter string', () => {

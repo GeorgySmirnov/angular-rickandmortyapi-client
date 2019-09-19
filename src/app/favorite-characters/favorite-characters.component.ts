@@ -10,6 +10,7 @@ import { Character } from '../types/character';
 })
 export class FavoriteCharactersComponent implements OnInit {
   public characters: Character[];
+  public favorites: number[];
 
   constructor(
     private characterService: CharacterService,
@@ -21,8 +22,13 @@ export class FavoriteCharactersComponent implements OnInit {
   }
 
   getCharacters() {
-    const favorites = this.favoritesService.getList();
-    this.characterService.getCharactersByIds(favorites).subscribe(
+    this.favorites = this.favoritesService.getList();
+    this.characterService.getCharactersByIds(this.favorites).subscribe(
       characters => this.characters = characters);
+  }
+
+  toggleFavorite(id: number) {
+    this.favoritesService.toggleCharacter(id);
+    this.getCharacters();
   }
 }

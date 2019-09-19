@@ -7,13 +7,15 @@ import { CharacterListComponent } from './character-list/character-list.componen
 import { HttpClientModule } from '@angular/common/http';
 import { CharacterDetailComponent } from './character-detail/character-detail.component';
 import { FavoriteCharactersComponent } from './favorite-characters/favorite-characters.component';
+import { CharacterListDisplayComponent } from './character-list-display/character-list-display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharacterListComponent,
     CharacterDetailComponent,
-    FavoriteCharactersComponent
+    FavoriteCharactersComponent,
+    CharacterListDisplayComponent
   ],
   imports: [
     BrowserModule,

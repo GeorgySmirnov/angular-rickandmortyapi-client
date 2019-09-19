@@ -40,6 +40,7 @@ export class CharacterService {
     if (ids.length === 0) {
       return of([]);
     }
-    return this.http.get<Character[]>(this.characterURL + ids.join(','));
+    return this.http.get<Character[]>(this.characterURL + ids.join(','))
+      .pipe(map( result => Array.isArray(result) ? result : [ result ]));
   }
 }

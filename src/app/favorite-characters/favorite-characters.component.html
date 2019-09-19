@@ -1,11 +1,1 @@
-<div class='character-list'>
-    <div *ngFor='let character of characters' class='character-list-item'>
-        <a class='character-image' routerLink="/character/{{character.id}}">
-            <img src='{{character.image}}' />
-        </a>
-        <div class='character-name'>{{character.name}}</div>
-        <div class='character-status'>{{character.status}}</div>
-        <div class='character-species'>{{character.species}}</div>
-        <div class='character-type'>{{character.type}}</div>
-    </div>
-</div>
+<app-character-list-display [characters]="characters" [favorites]="favorites" (favoriteToggle)="toggleFavorite($event)"></app-character-list-display>
