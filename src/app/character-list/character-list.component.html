@@ -1,10 +1,10 @@
 <h2>Characters:</h2>
-<label>Filter:
-    <input #filterInput (keydown.enter)="setFilter(filterInput.value)"/>
+<label class='filter'>Filter:
+    <input class='filter-input' #filterInput (keydown.enter)="setFilter(filterInput.value)" placeholder="name rick sanchez, status alive, species human,..."/>
 </label>
 <div class='page-controls'>
-    <div *ngIf='page > 1' (click)='setPage(page - 1)'>back</div>
-    <span>{{page}}/{{pages}}</span>
-    <div *ngIf='page < pages' (click)='setPage(page + 1)'>forward</div>
+    <div *ngIf='page > 1' (click)='setPage(page - 1)' class='page-button'>back</div>
+    <div class='page-counter'>{{page}}/{{pages}}</div>
+    <div *ngIf='page < pages' (click)='setPage(page + 1)' class='page-button'>forward</div>
 </div>
 <app-character-list-display [characters]="characters" [favorites]="favorites" (favoriteToggle)="toggleFavorite($event)"></app-character-list-display>

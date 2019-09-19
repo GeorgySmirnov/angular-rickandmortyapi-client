@@ -1,4 +1,14 @@
 
+
+.character-info {
+    margin: 20px;
+    padding: 10px;
+}
+
+.character-image {
+    margin-bottom: 10px;
+}
+
 .episode {
     display: flex;
     flex-flow: row nowrap;

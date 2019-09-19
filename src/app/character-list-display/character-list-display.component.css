@@ -7,11 +7,14 @@
     margin: 20px;
     padding: 20px;
     border: 1px solid white;
-    border-radius: 5px;
 }
 
 .character-name {
     font-size: 20px;
+}
+
+.character-image {
+    margin-bottom: 10px;
 }
 
 .favorite {

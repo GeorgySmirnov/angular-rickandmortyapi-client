@@ -1,0 +1,10 @@
+.navigation {
+    margin: 20px;
+}
+
+.navigation>a {
+    margin: 5px;
+    padding: 10px;
+    background: rgb(30,30,30);
+    text-decoration: none;
+}

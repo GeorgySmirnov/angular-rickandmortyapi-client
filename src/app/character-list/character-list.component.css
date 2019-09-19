@@ -1,0 +1,29 @@
+.page-controls {
+    display: inline-flex;
+    margin: 20px;
+    margin-right: auto;
+    padding: 20px 0;
+    background: rgb(30,30,30);
+}
+
+.page-button {
+    margin: 0 20px;
+    padding: 5px;
+    cursor: pointer;
+    background: white;
+    color: black;
+}
+
+.page-counter {
+    background-color: inherit;
+    margin: 0 20px;
+    padding: 5px;
+}
+
+.filter {
+    margin: 20px;
+}
+
+.filter-input {
+    width: 300px;
+}
